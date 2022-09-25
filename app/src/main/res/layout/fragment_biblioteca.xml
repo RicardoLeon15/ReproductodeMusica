@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/frameLayout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorPrimaryDark"
+    tools:context=".Biblioteca">
+
+    <TextView
+        android:id="@+id/titulo"
+        android:layout_width="0dp"
+        android:layout_height="97dp"
+        android:layout_marginTop="28dp"
+        android:text="@string/biblioteca_string"
+        android:textColor="@color/icons_text"
+        android:textSize="70sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginTop="18dp"
+        android:layout_marginBottom="70dp"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/titulo">
+
+        <Button
+            android:id="@+id/btn_canciones"
+            style="@style/Widget.MaterialComponents.MaterialCalendar.HeaderConfirmButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@android:color/transparent"
+            android:drawableLeft="@drawable/ic_round_music_note_biblioteca"
+            android:drawableRight="@drawable/ic_round_keyboard_arrow_right_24"
+            android:gravity="start"
+            android:insetTop="0dp"
+            android:insetBottom="0dp"
+            android:padding="12dp"
+            android:text="@string/canciones_string"
+            android:textAllCaps="false"
+            android:textSize="30sp" />
+
+        <Button
+            android:id="@+id/btn_listas"
+            style="@style/Widget.MaterialComponents.MaterialCalendar.HeaderConfirmButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:drawableLeft="@drawable/ic_round_format_list_bulleted_biblioteca"
+            android:drawableRight="@drawable/ic_round_keyboard_arrow_right_24"
+            android:gravity="start"
+            android:insetTop="0dp"
+            android:insetBottom="0dp"
+            android:padding="12dp"
+            android:text="@string/listas_string"
+            android:textAllCaps="false"
+            android:textSize="30sp" />
+
+        <Button
+            android:id="@+id/btn_artistas"
+            style="@style/Widget.MaterialComponents.MaterialCalendar.HeaderConfirmButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:drawableLeft="@drawable/ic_round_record_voice_over_biblioteca"
+            android:drawableRight="@drawable/ic_round_keyboard_arrow_right_24"
+            android:gravity="start"
+            android:insetTop="0dp"
+            android:insetBottom="0dp"
+            android:padding="12dp"
+            android:text="@string/artistas_string"
+            android:textAllCaps="false"
+            android:textSize="30sp" />
+
+        <Button
+            android:id="@+id/btn_albumes"
+            style="@style/Widget.MaterialComponents.MaterialCalendar.HeaderConfirmButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:drawableLeft="@drawable/ic_round_album_biblioteca"
+            android:drawableRight="@drawable/ic_round_keyboard_arrow_right_24"
+            android:gravity="start"
+            android:insetTop="0dp"
+            android:insetBottom="0dp"
+            android:padding="12dp"
+            android:text="@string/albumes_string"
+            android:textAllCaps="false"
+            android:textSize="30sp" />
+
+        <Button
+            android:id="@+id/btn_favoritos"
+            style="@style/Widget.MaterialComponents.MaterialCalendar.HeaderConfirmButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:drawableLeft="@drawable/ic_round_favorite_biblioteca"
+            android:drawableRight="@drawable/ic_round_keyboard_arrow_right_24"
+            android:gravity="start"
+            android:insetTop="0dp"
+            android:insetBottom="0dp"
+            android:padding="12dp"
+            android:text="@string/favoritos_string"
+            android:textAllCaps="false"
+            android:textSize="30sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

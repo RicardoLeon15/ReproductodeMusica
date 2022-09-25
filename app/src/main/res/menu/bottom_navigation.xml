@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/Biblioteca"
+        android:icon="@drawable/ic_round_home_24"
+        android:title="Biblioteca"/>
+
+    <item
+        android:id="@+id/Canciones"
+        android:icon="@drawable/ic_round_music_note_24"
+        android:title="Canciones"/>
+
+    <item
+        android:id="@+id/Listas"
+        android:icon="@drawable/ic_round_format_list_bulleted_24"
+        android:title="Listas"/>
+
+    <item
+        android:id="@+id/Buscar"
+        android:icon="@drawable/ic_round_search_24"
+        android:title="Buscar"/>
+
+</menu>
