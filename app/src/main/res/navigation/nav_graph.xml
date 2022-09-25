@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/Biblioteca">
+
+    <fragment
+        android:id="@+id/Biblioteca"
+        android:name="rleon.com.reproductodemusica.Biblioteca"
+        android:label="fragment_biblioteca"
+        tools:layout="@layout/fragment_biblioteca" >
+        <action
+            android:id="@+id/action_Biblioteca_to_Canciones"
+            app:destination="@id/Canciones" />
+        <action
+            android:id="@+id/action_Biblioteca_to_Listas"
+            app:destination="@id/Listas" />
+        <action
+            android:id="@+id/action_Biblioteca_to_Artistas"
+            app:destination="@id/Artistas" />
+        <action
+            android:id="@+id/action_Biblioteca_to_albumes"
+            app:destination="@id/Albumes" />
+        <action
+            android:id="@+id/action_Biblioteca_to_favoritos"
+            app:destination="@id/Favoritos" />
+    </fragment>
+    <fragment
+        android:id="@+id/Buscar"
+        android:name="rleon.com.reproductodemusica.Buscar"
+        android:label="fragment_buscar"
+        tools:layout="@layout/fragment_buscar" />
+    <fragment
+        android:id="@+id/Canciones"
+        android:name="rleon.com.reproductodemusica.Canciones"
+        android:label="fragment_canciones"
+        tools:layout="@layout/fragment_canciones" />
+    <fragment
+        android:id="@+id/Listas"
+        android:name="rleon.com.reproductodemusica.Listas"
+        android:label="fragment_listas"
+        tools:layout="@layout/fragment_listas" />
+    <fragment
+        android:id="@+id/Artistas"
+        android:name="rleon.com.reproductodemusica.Artistas"
+        android:label="fragment_artistas"
+        tools:layout="@layout/fragment_artistas" />
+    <fragment
+        android:id="@+id/Albumes"
+        android:name="rleon.com.reproductodemusica.Albumes"
+        android:label="fragment_albumes"
+        tools:layout="@layout/fragment_albumes" />
+    <fragment
+        android:id="@+id/Favoritos"
+        android:name="rleon.com.reproductodemusica.Favoritos"
+        android:label="fragment_favoritos"
+        tools:layout="@layout/fragment_favoritos" />
+</navigation>

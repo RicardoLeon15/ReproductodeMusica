@@ -1,3 +1,11 @@
 <resources>
     <string name="app_name">ReproductodeMusica</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="biblioteca_string">Biblioteca</string>
+    <string name="canciones_string">Canciones</string>
+    <string name="listas_string">Listas</string>
+    <string name="albumes_string">Álbumes</string>
+    <string name="artistas_string">Artistas</string>
+    <string name="favoritos_string">Favoritos</string>
 </resources>
