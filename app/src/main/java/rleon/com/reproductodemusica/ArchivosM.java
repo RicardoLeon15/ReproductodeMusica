@@ -7,7 +7,7 @@ public class ArchivosM {
     private String album;
     private String tiempo;
 
-    public ArchivosM(String path, String cancion, String artista, String album, String tiempo) {
+    public ArchivosM( String cancion, String artista, String album, String tiempo, String path) {
         this.path = path;
         this.cancion = cancion;
         this.artista = artista;

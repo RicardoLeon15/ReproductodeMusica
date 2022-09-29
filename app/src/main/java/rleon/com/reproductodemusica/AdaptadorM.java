@@ -1,6 +1,7 @@
 package rleon.com.reproductodemusica;
 
 import android.content.Context;
+import android.content.Intent;
 import android.media.MediaMetadataRetriever;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -42,6 +43,14 @@ public class AdaptadorM extends RecyclerView.Adapter<AdaptadorM.MHolder> {
         }else{
             Glide.with(mcontext).load(R.drawable.ic_cancion).into(holder.icancion);
         }*/
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(mcontext, Reproductor.class);
+                intent.putExtra("position",position);
+                mcontext.startActivity(intent);
+            }
+        });
     }
 
     @Override
