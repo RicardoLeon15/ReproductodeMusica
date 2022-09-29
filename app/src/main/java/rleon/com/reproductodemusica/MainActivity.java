@@ -88,7 +88,7 @@ public class MainActivity extends AppCompatActivity {
                 String duration = cursor.getString(3);
                 String data = cursor.getString(4);
 
-                ArchivosM archivosM = new ArchivosM(data, title, artist, album, duration);
+                ArchivosM archivosM = new ArchivosM(title, artist, album, duration, data);
                 listSong.add(archivosM);
             }
             cursor.close();
