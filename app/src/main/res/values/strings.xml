@@ -8,4 +8,6 @@
     <string name="albumes_string">Álbumes</string>
     <string name="artistas_string">Artistas</string>
     <string name="favoritos_string">Favoritos</string>
+    <string name="listas_rep_string">Listas de reproducción</string>
+    <string name="add_list_string">Crear Lista de reproducción</string>
 </resources>
