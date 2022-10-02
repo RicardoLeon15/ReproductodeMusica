@@ -40,7 +40,11 @@
         android:id="@+id/Listas"
         android:name="rleon.com.reproductodemusica.Listas"
         android:label="fragment_listas"
-        tools:layout="@layout/fragment_listas" />
+        tools:layout="@layout/fragment_listas" >
+        <action
+            android:id="@+id/action_Listas_to_listAddSong"
+            app:destination="@id/listAddSong" />
+    </fragment>
     <fragment
         android:id="@+id/Artistas"
         android:name="rleon.com.reproductodemusica.Artistas"
@@ -56,4 +60,9 @@
         android:name="rleon.com.reproductodemusica.Favoritos"
         android:label="fragment_favoritos"
         tools:layout="@layout/fragment_favoritos" />
+    <fragment
+        android:id="@+id/listAddSong"
+        android:name="rleon.com.reproductodemusica.ListAddSong"
+        android:label="fragment_list_add_song"
+        tools:layout="@layout/fragment_list_add_song" />
 </navigation>
