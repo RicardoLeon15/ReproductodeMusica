@@ -22,6 +22,17 @@
         android:layout_height="60dp"
         android:layout_alignParentTop="true"
         android:layout_marginTop="4dp"
-        android:src="@mipmap/ic_launcher_round" />
+        android:src="@mipmap/ic_launcher_round"
+        android:padding="5pt"/>
+
+    <ImageView
+        android:id="@+id/ajustesC"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="4dp"
+        android:src="@drawable/ic_ajustes"
+        android:layout_alignParentEnd="true"
+        android:padding="10pt"/>
 
 </RelativeLayout>

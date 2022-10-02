@@ -5,14 +5,14 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:id="@+id/mreproductor"
-    android:background="@color/colorPrimaryDark"
+    android:background="@drawable/fondo"
     tools:context=".Reproductor">
     
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:id="@+id/menuc"
-        android:background="@color/colorPrimaryDark"
+        android:background="@drawable/gradient"
         android:layout_alignParentTop="true">
         <ImageView
             android:layout_width="30dp"
@@ -40,6 +40,11 @@
             android:src="@drawable/ic_cancion"
             android:scaleType="centerCrop"
             android:id="@+id/imgCancion" />
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="250dp"
+            android:id="@+id/imgGr"
+            android:layout_alignParentBottom="true"/>
     </RelativeLayout>
     <TextView
         android:layout_width="match_parent"
