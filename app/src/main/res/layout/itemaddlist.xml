@@ -10,17 +10,15 @@
         android:id="@+id/imageAddList"
         android:layout_width="60dp"
         android:layout_height="60dp"
-        app:layout_constraintEnd_toStartOf="@+id/btnSongAddList"
+        app:layout_constraintEnd_toStartOf="@+id/tvSongAddList"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/ic_round_music_note_24" />
 
-    <Button
-        android:id="@+id/btnSongAddList"
+    <TextView
+        android:id="@+id/tvSongAddList"
         android:layout_width="257dp"
         android:layout_height="60dp"
-        android:insetTop="0dp"
-        android:insetBottom="0dp"
         app:layout_constraintEnd_toStartOf="@+id/btnOptAddList"
         app:layout_constraintStart_toEndOf="@+id/imageAddList"
         app:layout_constraintTop_toTopOf="parent" />
@@ -29,7 +27,9 @@
         android:id="@+id/btnOptAddList"
         android:layout_width="80dp"
         android:layout_height="60dp"
+        android:background="@color/colorPrimaryDark"
+        android:src="@drawable/ic_round_add_35"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/btnSongAddList"
+        app:layout_constraintStart_toEndOf="@+id/tvSongAddList"
         app:layout_constraintTop_toTopOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>
