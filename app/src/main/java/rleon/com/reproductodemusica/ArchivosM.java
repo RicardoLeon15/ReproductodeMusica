@@ -6,13 +6,15 @@ public class ArchivosM {
     private String artista;
     private String album;
     private String tiempo;
+    private String id;
 
-    public ArchivosM( String cancion, String artista, String album, String tiempo, String path) {
+    public ArchivosM( String cancion, String artista, String album, String tiempo, String path, String id) {
         this.path = path;
         this.cancion = cancion;
         this.artista = artista;
         this.album = album;
         this.tiempo = tiempo;
+        this.id = id;
     }
 
     public ArchivosM() {
@@ -56,5 +58,13 @@ public class ArchivosM {
 
     public void setTiempo(String tiempo) {
         this.tiempo = tiempo;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
     }
 }

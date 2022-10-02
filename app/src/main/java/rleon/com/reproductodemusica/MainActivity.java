@@ -25,6 +25,7 @@ public class MainActivity extends AppCompatActivity {
 
     public static final int REQUEST_CODE = 1;
     static ArrayList<ArchivosM> archivosMS;
+    static boolean aleatorio = false;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -68,7 +69,8 @@ public class MainActivity extends AppCompatActivity {
                 MediaStore.Audio.Media.ARTIST,
                 MediaStore.Audio.Media.ALBUM,
                 MediaStore.Audio.Media.DURATION,
-                MediaStore.Audio.Media.DATA
+                MediaStore.Audio.Media.DATA,
+                MediaStore.Audio.Media._ID
         };
         Cursor cursor = context.getContentResolver().query(uri,projection,null,null,null);
         if (cursor != null){
@@ -78,11 +80,11 @@ public class MainActivity extends AppCompatActivity {
                 String album = cursor.getString(2);
                 String duration = cursor.getString(3);
                 String data = cursor.getString(4);
-
-                ArchivosM archivosM = new ArchivosM(title, artist, album, duration, data);
+                String id = cursor.getString(5);
+                ArchivosM archivosM = new ArchivosM(title, artist, album, duration, data, id);
                 listSong.add(archivosM);
             }
-            cursor.close();
+            //cursor.close();
         }
         return listSong;
     }
