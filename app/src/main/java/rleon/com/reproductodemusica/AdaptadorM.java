@@ -4,8 +4,12 @@ import android.content.ContentUris;
 import android.content.Context;
 import android.content.Intent;
 import android.media.MediaMetadataRetriever;
+
 import android.net.Uri;
 import android.provider.MediaStore;
+
+import android.util.Log;
+
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -44,13 +48,13 @@ public class AdaptadorM extends RecyclerView.Adapter<AdaptadorM.MHolder> {
     @Override
     public void onBindViewHolder(@NonNull MHolder holder, int position) {
         holder.ncancion.setText(mFiles.get(position).getCancion());
-        Glide.with(mcontext).load(R.drawable.ic_cancion).into(holder.icancion);
-        /*byte[] image = getAlbumsArt(mFiles.get(position).getPath());
+        //Glide.with(mcontext).load(R.drawable.ic_cancion).into(holder.icancion);
+        byte[] image = getAlbumsArt(mFiles.get(position).getPath());
         if (image != null){
             Glide.with(mcontext).asBitmap().load(image).into(holder.icancion);
         }else{
             Glide.with(mcontext).load(R.drawable.ic_cancion).into(holder.icancion);
-        }*/
+        }
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -109,11 +113,11 @@ public class AdaptadorM extends RecyclerView.Adapter<AdaptadorM.MHolder> {
         }
     }
 
-    /*private byte[] getAlbumsArt(String uri){
+    private byte[] getAlbumsArt(String uri){
         MediaMetadataRetriever retriever = new MediaMetadataRetriever();
         retriever.setDataSource(uri);
         byte[] art = retriever.getEmbeddedPicture();
         retriever.release();
         return art;
-    }*/
+    }
 }
