@@ -35,6 +35,7 @@ public class MainActivity extends AppCompatActivity {
     public static final int REQUEST_CODE = 1;
     static ArrayList<ArchivosM> archivosMS;
     static boolean aleatorio = false;
+    static ArrayList<ArchivosM> albums = new ArrayList<>();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -71,6 +72,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public static ArrayList<ArchivosM> getAllAudio(Context context){
+        ArrayList<String> albums2 = new ArrayList<>();
         ArrayList<ArchivosM> listSong = new ArrayList<>();
         Uri uri = MediaStore.Audio.Media.EXTERNAL_CONTENT_URI;
         String[] projection = {
@@ -92,6 +94,10 @@ public class MainActivity extends AppCompatActivity {
                 String id = cursor.getString(5);
                 ArchivosM archivosM = new ArchivosM(title, artist, album, duration, data, id);
                 listSong.add(archivosM);
+                if (!albums2.contains(album)){
+                    albums.add(archivosM);
+                    albums2.add(album);
+                }
             }
             //cursor.close();
         }

@@ -1,14 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".Albumes">
-
     <TextView
         android:id="@+id/textView"
-        android:layout_width="269dp"
-        android:layout_height="113dp"
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
         android:text="Albumes"
         android:textSize="36sp" />
-</FrameLayout>
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recycleview"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/textView"
+        android:layout_marginTop="10dp" />
+</RelativeLayout>
