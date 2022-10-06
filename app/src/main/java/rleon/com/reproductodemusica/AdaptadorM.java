@@ -65,12 +65,12 @@ public class AdaptadorM extends RecyclerView.Adapter<AdaptadorM.MHolder> {
         });
         holder.ajustes.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view) {
+            public void onClick(final View view) {
                 PopupMenu popupMenu = new PopupMenu(mcontext, view);
                 popupMenu.getMenuInflater().inflate(R.menu.ajustesc, popupMenu.getMenu());
                 popupMenu.show();
-                popupMenu.setOnMenuItemClickListener(menuItem -> {
-                    switch (menuItem.getItemId()){
+                popupMenu.setOnMenuItemClickListener((item) -> {
+                    switch (item.getItemId()){
                         case R.id.eliminar:
                             deleteCancion(position, view);
                             break;

@@ -28,6 +28,7 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import java.util.ArrayList;
 import java.util.Random;
 
+import static rleon.com.reproductodemusica.AlbumCAdapter.albumFiles;
 import static rleon.com.reproductodemusica.MainActivity.aleatorio;
 import static rleon.com.reproductodemusica.MainActivity.archivosMS;
 
@@ -156,6 +157,7 @@ public class Reproductor extends AppCompatActivity implements MediaPlayer.OnComp
                     handler.postDelayed(this, 1000);
                 }
             });
+            metaData(uri);
             mediaPlayer.setOnCompletionListener(this);
             playP.setBackgroundResource(R.drawable.ic_pause);
             mediaPlayer.start();
@@ -182,6 +184,7 @@ public class Reproductor extends AppCompatActivity implements MediaPlayer.OnComp
                     handler.postDelayed(this, 1000);
                 }
             });
+            metaData(uri);
             mediaPlayer.setOnCompletionListener(this);
             playP.setBackgroundResource(R.drawable.ic_play);
         }
@@ -227,6 +230,7 @@ public class Reproductor extends AppCompatActivity implements MediaPlayer.OnComp
                     handler.postDelayed(this, 1000);
                 }
             });
+            metaData(uri);
             mediaPlayer.setOnCompletionListener(this);
             playP.setBackgroundResource(R.drawable.ic_pause);
             mediaPlayer.start();
@@ -253,6 +257,7 @@ public class Reproductor extends AppCompatActivity implements MediaPlayer.OnComp
                     handler.postDelayed(this, 1000);
                 }
             });
+            metaData(uri);
             mediaPlayer.setOnCompletionListener(this);
             playP.setBackgroundResource(R.drawable.ic_play);
         }
@@ -313,7 +318,12 @@ public class Reproductor extends AppCompatActivity implements MediaPlayer.OnComp
 
     private void getIntenMethod() {
         pos = getIntent().getIntExtra("position",-1);
-        listMS = archivosMS;
+        String sender = getIntent().getStringExtra("sender");
+        if (sender != null && sender.equals("cancionesA")){
+            listMS = albumFiles;
+        }else {
+            listMS = archivosMS;
+        }
         if (listMS != null){
             playP.setImageResource(R.drawable.ic_pause);
             uri = uri.parse(listMS.get(pos).getPath());
@@ -353,7 +363,7 @@ public class Reproductor extends AppCompatActivity implements MediaPlayer.OnComp
         int tiempoT = Integer.parseInt(listMS.get(pos).getTiempo()) / 1000;
         duracion2.setText(formattedTime(tiempoT));
         byte[] art = retriever.getEmbeddedPicture();
-        Bitmap bitmap = null;
+        Bitmap bitmap;
         if (art != null){
             //Glide.with(this).asBitmap().load(art).into(imgC);
             bitmap = BitmapFactory.decodeByteArray(art, 0, art.length);
@@ -367,9 +377,11 @@ public class Reproductor extends AppCompatActivity implements MediaPlayer.OnComp
                         RelativeLayout ly = findViewById(R.id.mreproductor);
                         ig.setBackgroundResource(R.drawable.gradient);
                         ly.setBackgroundResource(R.drawable.fondo);
-                        GradientDrawable gradientDrawable = new GradientDrawable(GradientDrawable.Orientation.BOTTOM_TOP, new int[]{swatch.getRgb(), 0x00000000});
+                        GradientDrawable gradientDrawable = new GradientDrawable(GradientDrawable.Orientation.BOTTOM_TOP,
+                                new int[]{swatch.getRgb(), 0x00000000});
                         ig.setBackground(gradientDrawable);
-                        GradientDrawable gradientDrawableB = new GradientDrawable(GradientDrawable.Orientation.BOTTOM_TOP, new int[]{swatch.getRgb(), swatch.getRgb()});
+                        GradientDrawable gradientDrawableB = new GradientDrawable(GradientDrawable.Orientation.BOTTOM_TOP,
+                                new int[]{swatch.getRgb(), swatch.getRgb()});
                         ly.setBackground(gradientDrawableB);
                         nomC.setTextColor(swatch.getTitleTextColor());
                         nomA.setTextColor(swatch.getBodyTextColor());
@@ -378,9 +390,11 @@ public class Reproductor extends AppCompatActivity implements MediaPlayer.OnComp
                         RelativeLayout ly = findViewById(R.id.mreproductor);
                         ly.setBackgroundResource(R.drawable.gradient);
                         ig.setBackgroundResource(R.drawable.fondo);
-                        GradientDrawable gradientDrawable = new GradientDrawable(GradientDrawable.Orientation.BOTTOM_TOP, new int[]{0xff000000, 0x00000000});
+                        GradientDrawable gradientDrawable = new GradientDrawable(GradientDrawable.Orientation.BOTTOM_TOP,
+                                new int[]{0xff000000, 0x00000000});
                         ig.setBackground(gradientDrawable);
-                        GradientDrawable gradientDrawableB = new GradientDrawable(GradientDrawable.Orientation.BOTTOM_TOP, new int[]{0xff000000, 0xff000000});
+                        GradientDrawable gradientDrawableB = new GradientDrawable(GradientDrawable.Orientation.BOTTOM_TOP,
+                                new int[]{0xff000000, 0xff000000});
                         ly.setBackground(gradientDrawableB);
                         nomC.setTextColor(Color.WHITE);
                         nomA.setTextColor(Color.DKGRAY);
@@ -398,7 +412,7 @@ public class Reproductor extends AppCompatActivity implements MediaPlayer.OnComp
         }
     }
 
-    public void AleatorioImg(Context contex, ImageView imageView, Bitmap bitmap){ //solo es el cambio de imagen
+    public void AleatorioImg(final Context contex, final ImageView imageView, final Bitmap bitmap){ //solo es el cambio de imagen
         Animation animout = AnimationUtils.loadAnimation(contex, android.R.anim.fade_out);
         Animation animin = AnimationUtils.loadAnimation(contex, android.R.anim.fade_in);
         animout.setAnimationListener(new Animation.AnimationListener() {

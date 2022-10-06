@@ -3,10 +3,17 @@ package rleon.com.reproductodemusica;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.GridLayout;
+
+import static rleon.com.reproductodemusica.MainActivity.albums;
+import static rleon.com.reproductodemusica.MainActivity.archivosMS;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -23,6 +30,9 @@ public class Albumes extends Fragment {
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
+
+    RecyclerView recyclerView;
+    AdaptadorAl adaptadorAl;
 
     public Albumes() {
         // Required empty public constructor
@@ -46,19 +56,27 @@ public class Albumes extends Fragment {
         return fragment;
     }
 
-    @Override
+    /*@Override  SIGUE COMENTADO, NO LO VAYAS A DESCOMENTAR
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
-    }
+    }*/
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_albumes, container, false);
+        View view = inflater.inflate(R.layout.fragment_albumes, container, false);
+        recyclerView = view.findViewById(R.id.recycleview);
+        recyclerView.setHasFixedSize(true);
+        if (!(albums.size()<1)){
+            adaptadorAl = new AdaptadorAl(getContext(), albums);
+            recyclerView.setAdapter(adaptadorAl);
+            recyclerView.setLayoutManager(new GridLayoutManager(getContext(), 2));
+        }
+        return view;
     }
 }
