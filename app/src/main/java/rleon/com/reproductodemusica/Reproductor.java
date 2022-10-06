@@ -29,6 +29,7 @@ import java.util.ArrayList;
 import java.util.Random;
 
 import static rleon.com.reproductodemusica.AlbumCAdapter.albumFiles;
+import static rleon.com.reproductodemusica.ArtistaCAdapter.artistFiles;
 import static rleon.com.reproductodemusica.MainActivity.aleatorio;
 import static rleon.com.reproductodemusica.MainActivity.archivosMS;
 
@@ -321,6 +322,8 @@ public class Reproductor extends AppCompatActivity implements MediaPlayer.OnComp
         String sender = getIntent().getStringExtra("sender");
         if (sender != null && sender.equals("cancionesA")){
             listMS = albumFiles;
+        }else if (sender != null && sender.equals("cancionesAr")){
+            listMS = artistFiles;
         }else {
             listMS = archivosMS;
         }

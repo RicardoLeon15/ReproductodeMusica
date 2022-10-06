@@ -3,10 +3,15 @@ package rleon.com.reproductodemusica;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+
+import static rleon.com.reproductodemusica.MainActivity.albums;
+import static rleon.com.reproductodemusica.MainActivity.artists;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -23,6 +28,9 @@ public class Artistas extends Fragment {
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
+
+    RecyclerView recyclerView;
+    AdaptadorAr adaptadorAr;
 
     public Artistas() {
         // Required empty public constructor
@@ -46,19 +54,27 @@ public class Artistas extends Fragment {
         return fragment;
     }
 
-    @Override
+    /*@Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
-    }
+    }*/
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_artistas, container, false);
+        View view = inflater.inflate(R.layout.fragment_artistas, container, false);
+        recyclerView = view.findViewById(R.id.recycleview);
+        recyclerView.setHasFixedSize(true);
+        if (!(artists.size()<1)){
+            adaptadorAr = new AdaptadorAr(getContext(), artists);
+            recyclerView.setAdapter(adaptadorAr);
+            recyclerView.setLayoutManager(new GridLayoutManager(getContext(), 2));
+        }
+        return view;
     }
 }
