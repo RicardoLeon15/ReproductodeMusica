@@ -28,12 +28,11 @@
         app:layout_constraintStart_toEndOf="@+id/imageAddList"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <ImageButton
+    <CheckBox
         android:id="@+id/btnOptAddList"
-        android:layout_width="80dp"
-        android:layout_height="60dp"
+        android:layout_width="30sp"
+        android:layout_height="63dp"
         android:background="@color/colorPrimaryDark"
-        android:src="@drawable/ic_round_add_35"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/tvSongAddList"
         app:layout_constraintTop_toTopOf="parent" />
