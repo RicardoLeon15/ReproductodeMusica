@@ -15,6 +15,7 @@ import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
+import android.view.Menu;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
@@ -99,5 +100,10 @@ public class MainActivity extends AppCompatActivity {
             cursor.close();
         }
         return listSong;
+    }
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu){
+        getMenuInflater().inflate(R.menu.buscar, menu);
+        return super.onCreateOptionsMenu(menu);
     }
 }

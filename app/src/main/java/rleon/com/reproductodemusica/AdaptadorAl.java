@@ -35,12 +35,12 @@ public class AdaptadorAl extends RecyclerView.Adapter<AdaptadorAl.MyHolder> {
     @Override
     public void onBindViewHolder(@NonNull MyHolder holder, int position) {
         holder.nomAl.setText(albumFiles.get(position).getAlbum());
-        Glide.with(mcontext).load(R.drawable.ic_cancion).into(holder.imgAl);//debes comentar esto antes de descomentar lo de abajo
+        Glide.with(mcontext).load(R.drawable.ic_album).into(holder.imgAl);//debes comentar esto antes de descomentar lo de abajo
         /*byte[] image = getAlbumsArt(albumFiles.get(position).getPath());
         if (image != null){
             Glide.with(mcontext).asBitmap().load(image).into(holder.imgAl);
         }else{
-            Glide.with(mcontext).load(R.drawable.ic_cancion).into(holder.imgAl);
+            Glide.with(mcontext).load(R.drawable.ic_album).into(holder.imgAl);
         }*/
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override

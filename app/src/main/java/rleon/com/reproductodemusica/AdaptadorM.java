@@ -1,5 +1,6 @@
 package rleon.com.reproductodemusica;
 
+import android.content.ComponentName;
 import android.content.ContentUris;
 import android.content.Context;
 import android.content.Intent;
@@ -10,7 +11,11 @@ import android.provider.MediaStore;
 
 import android.util.Log;
 
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuItem;
+import android.view.SubMenu;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
@@ -48,13 +53,13 @@ public class AdaptadorM extends RecyclerView.Adapter<AdaptadorM.MHolder> {
     @Override
     public void onBindViewHolder(@NonNull MHolder holder, int position) {
         holder.ncancion.setText(mFiles.get(position).getCancion());
-        //Glide.with(mcontext).load(R.drawable.ic_cancion).into(holder.icancion);
-        byte[] image = getAlbumsArt(mFiles.get(position).getPath());
+        Glide.with(mcontext).load(R.drawable.ic_round_album_24).into(holder.icancion);
+        /*byte[] image = getAlbumsArt(mFiles.get(position).getPath());
         if (image != null){
             Glide.with(mcontext).asBitmap().load(image).into(holder.icancion);
         }else{
-            Glide.with(mcontext).load(R.drawable.ic_cancion).into(holder.icancion);
-        }
+            Glide.with(mcontext).load(R.drawable.ic_round_album_24).into(holder.icancion);
+        }*/
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -104,7 +109,7 @@ public class AdaptadorM extends RecyclerView.Adapter<AdaptadorM.MHolder> {
 
     public class MHolder extends RecyclerView.ViewHolder{
         TextView ncancion;
-        ImageView icancion, ajustes;
+        ImageView icancion, ajustes, buscar;
         public MHolder(@NonNull View itemView) {
             super(itemView);
             ncancion = itemView.findViewById(R.id.textView4);
@@ -113,11 +118,11 @@ public class AdaptadorM extends RecyclerView.Adapter<AdaptadorM.MHolder> {
         }
     }
 
-    private byte[] getAlbumsArt(String uri){
+    /*private byte[] getAlbumsArt(String uri){
         MediaMetadataRetriever retriever = new MediaMetadataRetriever();
         retriever.setDataSource(uri);
         byte[] art = retriever.getEmbeddedPicture();
         retriever.release();
         return art;
-    }
+    }*/
 }

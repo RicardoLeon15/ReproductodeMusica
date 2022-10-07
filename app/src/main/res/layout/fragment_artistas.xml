@@ -10,7 +10,10 @@
         android:layout_width="match_parent"
         android:layout_height="80dp"
         android:text="Artistas"
-        android:textSize="36sp" />
+        android:textSize="36sp"
+        android:textColor="@color/icons_text"
+        android:gravity="center"
+        android:background="@drawable/gradient"/>
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recycleview"
         android:layout_width="match_parent"
