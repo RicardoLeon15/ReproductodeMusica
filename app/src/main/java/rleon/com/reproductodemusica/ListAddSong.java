@@ -13,6 +13,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
@@ -99,8 +100,17 @@ public class ListAddSong extends Fragment {
                 Gson gson = new Gson();
                 String json = gson.toJson(adapterList.getArraylist());
                 SharedPreferences.Editor editor = spPlaylists.edit();
-                editor.putString("Canciones",json);
+                editor.putString("Canciones", json);
                 editor.apply();
+                Toast toast = Toast.makeText(getContext(), "Canciones agregadas", Toast.LENGTH_SHORT);
+                toast.show();
+                Bundle bundle = new Bundle();
+                bundle.putString("Playlist", nomList);
+                if (nomList == "Favoritos") {
+                    Navigation.findNavController(view).navigate(R.id.action_listAddSong_to_Favoritos, bundle);
+                } else {
+                    Navigation.findNavController(view).navigate(R.id.action_listAddSong_to_list, bundle);
+                }
             }
         });
         return view;
