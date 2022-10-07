@@ -71,6 +71,7 @@ public class Canciones extends Fragment {
         recyclerView = view.findViewById(R.id.recycleview);
         recyclerView.setHasFixedSize(true);
         if (!(archivosMS.size()<0)){
+            Log.i("prueba","Si entro varias veces canciones");
             adaptadorM = new AdaptadorM(getContext(), archivosMS);
             recyclerView.setAdapter(adaptadorM);
             recyclerView.setLayoutManager(new LinearLayoutManager(getContext(), RecyclerView.VERTICAL,
