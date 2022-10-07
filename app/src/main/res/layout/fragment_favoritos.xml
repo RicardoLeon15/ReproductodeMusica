@@ -1,14 +1,61 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".Favoritos">
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="300dp"
+        android:id="@+id/imgList"
+        android:src="@drawable/ic_round_favorite_biblioteca"
+        android:scaleType="centerCrop"/>
 
-    <TextView
-        android:id="@+id/textView3"
+    <ImageView
+        android:id="@+id/gradientFav"
+        android:layout_width="match_parent"
+        android:layout_height="300dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:src="@drawable/gradient" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/rvFav"
+        android:layout_below="@+id/imgList"/>
+
+    <ImageButton
+        android:id="@+id/btnFavBack"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="14dp"
+        android:layout_marginTop="23dp"
+        android:background="@null"
+        android:src="@drawable/ic_round_arrow_back_ios_24" />
+
+    <ImageButton
+        android:id="@+id/btnAddSongFav"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="22dp"
+        android:layout_marginEnd="15dp"
+        android:background="@null"
+        android:src="@drawable/ic_round_add_35" />
+
+    <TextView
+        android:id="@+id/tvFavNom"
+        android:layout_width="match_parent"
+        android:layout_height="54dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="0dp"
+        android:layout_marginTop="240dp"
         android:text="Favoritos"
-        android:textSize="36sp" />
-</FrameLayout>
+        android:textColor="@color/icons_text"
+        android:textSize="50sp" />
+</RelativeLayout>

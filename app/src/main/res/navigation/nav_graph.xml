@@ -25,6 +25,9 @@
         <action
             android:id="@+id/action_Biblioteca_to_favoritos"
             app:destination="@id/Favoritos" />
+        <action
+            android:id="@+id/action_Biblioteca_to_Buscar"
+            app:destination="@id/Buscar" />
     </fragment>
     <fragment
         android:id="@+id/Buscar"
@@ -59,7 +62,14 @@
         android:id="@+id/Favoritos"
         android:name="rleon.com.reproductodemusica.Favoritos"
         android:label="fragment_favoritos"
-        tools:layout="@layout/fragment_favoritos" />
+        tools:layout="@layout/fragment_favoritos" >
+        <action
+            android:id="@+id/action_Favoritos_to_Biblioteca"
+            app:destination="@id/Biblioteca" />
+        <action
+            android:id="@+id/action_Favoritos_to_listAddSong"
+            app:destination="@id/listAddSong" />
+    </fragment>
     <fragment
         android:id="@+id/listAddSong"
         android:name="rleon.com.reproductodemusica.ListAddSong"
@@ -68,6 +78,9 @@
         <action
             android:id="@+id/action_listAddSong_to_list"
             app:destination="@id/list" />
+        <action
+            android:id="@+id/action_listAddSong_to_Favoritos"
+            app:destination="@id/Favoritos" />
     </fragment>
     <fragment
         android:id="@+id/list"

@@ -1,12 +1,23 @@
 package rleon.com.reproductodemusica;
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
+import androidx.navigation.Navigation;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
+
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
+
+import java.util.ArrayList;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -23,7 +34,12 @@ public class Favoritos extends Fragment {
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
-
+    private String nomList;
+    private SharedPreferences spPlaylists;
+    private ArrayList<ArchivosM> arraylist = new ArrayList<ArchivosM>();
+    private RecyclerView recyclerView;
+    private AdapterList adapterList;
+    private AdaptadorM adaptadorM;
     public Favoritos() {
         // Required empty public constructor
     }
@@ -58,7 +74,37 @@ public class Favoritos extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_favoritos, container, false);
+        spPlaylists = getContext().getSharedPreferences("Favoritos", Context.MODE_PRIVATE);
+        String lists = spPlaylists.getString("Canciones","");
+        if (!lists.equals("")){
+            TypeToken<ArrayList<ArchivosM>> token = new TypeToken<ArrayList<ArchivosM>>(){};
+            Gson gson = new Gson();
+            arraylist = gson.fromJson(lists,token.getType());
+        }
+        final View view = inflater.inflate(R.layout.fragment_favoritos, container, false);
+        recyclerView = view.findViewById(R.id.rvFav);
+        recyclerView.setHasFixedSize(true);
+        if (arraylist.size()>-1){
+            adapterList = new AdapterList(getContext(), arraylist,nomList);
+            adaptadorM = new AdaptadorM(getContext(),arraylist);
+            recyclerView.setAdapter(adaptadorM);
+            recyclerView.setLayoutManager(new LinearLayoutManager(getContext(), RecyclerView.VERTICAL,
+                    false));
+        }
+        view.findViewById(R.id.btnFavBack).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Navigation.findNavController(view).navigate(R.id.action_Favoritos_to_Biblioteca);
+            }
+        });
+        view.findViewById(R.id.btnAddSongFav).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Bundle bundle = new Bundle();
+                bundle.putString("Playlist","Favoritos");
+                Navigation.findNavController(view).navigate(R.id.action_Favoritos_to_listAddSong,bundle);
+            }
+        });
+        return view;
     }
 }

@@ -42,6 +42,7 @@ public class List extends Fragment {
     private ArrayList<ArchivosM> arraylist = new ArrayList<ArchivosM>();
     private RecyclerView recyclerView;
     private AdapterList adapterList;
+    private AdaptadorM adaptadorM;
 
     public List() {
         // Required empty public constructor
@@ -90,7 +91,8 @@ public class List extends Fragment {
         recyclerView.setHasFixedSize(true);
         if (arraylist.size()>-1){
             adapterList = new AdapterList(getContext(), arraylist,nomList);
-            recyclerView.setAdapter(adapterList);
+            adaptadorM = new AdaptadorM(getContext(),arraylist);
+            recyclerView.setAdapter(adaptadorM);
             recyclerView.setLayoutManager(new LinearLayoutManager(getContext(), RecyclerView.VERTICAL,
                     false));
         }

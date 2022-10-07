@@ -18,6 +18,8 @@ import android.view.MenuItem;
 import android.view.SubMenu;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.PopupMenu;
 import android.widget.TextView;
@@ -52,15 +54,16 @@ public class AdaptadorM extends RecyclerView.Adapter<AdaptadorM.MHolder> {
 
     @Override
     public void onBindViewHolder(@NonNull MHolder holder, int position) {
+        int tiempoT = Integer.parseInt(mFiles.get(position).getTiempo()) / 1000;
+        holder.dcancion.setText(mFiles.get(position).getArtista()+" • "+formattedTime(tiempoT));
         holder.ncancion.setText(mFiles.get(position).getCancion());
-        Glide.with(mcontext).load(R.drawable.ic_round_album_24).into(holder.icancion);
-        /*byte[] image = getAlbumsArt(mFiles.get(position).getPath());
+        byte[] image = getAlbumsArt(mFiles.get(position).getPath());
         if (image != null){
             Glide.with(mcontext).asBitmap().load(image).into(holder.icancion);
         }else{
             Glide.with(mcontext).load(R.drawable.ic_round_album_24).into(holder.icancion);
-        }*/
-        holder.itemView.setOnClickListener(new View.OnClickListener() {
+        }
+        holder.button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(mcontext, Reproductor.class);
@@ -108,21 +111,39 @@ public class AdaptadorM extends RecyclerView.Adapter<AdaptadorM.MHolder> {
     }
 
     public class MHolder extends RecyclerView.ViewHolder{
-        TextView ncancion;
-        ImageView icancion, ajustes, buscar;
+        TextView ncancion, dcancion;
+        ImageView icancion;
+        ImageButton ajustes;
+        Button button;
         public MHolder(@NonNull View itemView) {
             super(itemView);
-            ncancion = itemView.findViewById(R.id.textView4);
+            ncancion = itemView.findViewById(R.id.tvSong);
+            dcancion = itemView.findViewById(R.id.tvSongDatos);
             icancion = itemView.findViewById(R.id.imageView);
             ajustes = itemView.findViewById(R.id.ajustesC);
+            button = itemView.findViewById(R.id.btnSong);
         }
     }
 
-    /*private byte[] getAlbumsArt(String uri){
+    private byte[] getAlbumsArt(String uri){
         MediaMetadataRetriever retriever = new MediaMetadataRetriever();
         retriever.setDataSource(uri);
         byte[] art = retriever.getEmbeddedPicture();
         retriever.release();
         return art;
-    }*/
+    }
+
+    private String formattedTime(int mCurrentPosition) {
+        String totalOut;
+        String totalNew;
+        String segundos = String.valueOf(mCurrentPosition % 60);
+        String minutos = String.valueOf(mCurrentPosition / 60);
+        totalOut = minutos+":"+segundos;
+        totalNew = minutos+":"+"0"+segundos;
+        if (segundos.length() == 1){
+            return totalNew;
+        }else{
+            return totalOut;
+        }
+    }
 }

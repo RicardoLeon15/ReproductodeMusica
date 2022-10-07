@@ -1,38 +1,82 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
-    android:layout_height="wrap_content">
-
-    <TextView
-        android:id="@+id/textView4"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_centerVertical="true"
-        android:layout_marginStart="5dp"
-        android:layout_marginTop="16dp"
-        android:layout_toEndOf="@+id/imageView"
-        android:text="File name"
-        android:textColor="@color/icons_text"
-        android:textSize="10pt" />
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/ins"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/colorPrimaryDark"
+    android:paddingHorizontal="6dp"
+    android:paddingVertical="4dp">
 
     <ImageView
         android:id="@+id/imageView"
         android:layout_width="60dp"
         android:layout_height="60dp"
-        android:layout_alignParentTop="true"
-        android:layout_marginTop="4dp"
-        android:src="@mipmap/ic_launcher_round"
-        android:padding="5pt"/>
+        android:layout_alignParentStart="true"
+        android:layout_marginStart="0dp"
+        app:layout_constraintEnd_toStartOf="@+id/tvSongAddList"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
-    <ImageView
-        android:id="@+id/ajustesC"
-        android:layout_width="60dp"
+    <TextView
+        android:id="@+id/tvSong"
+        android:layout_width="0dp"
+        android:layout_height="35dp"
+        android:layout_alignEnd="@+id/btnSong"
+        android:layout_marginStart="0dp"
+        android:layout_marginEnd="0dp"
+        android:layout_toEndOf="@+id/imageView"
+        android:paddingStart="0dp"
+        android:textAllCaps="false"
+        android:textColor="@color/icons_text"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toStartOf="@+id/btnOptAddList"
+        app:layout_constraintStart_toEndOf="@+id/imageAddList"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/tvSongDatos"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tvSong"
+        android:layout_alignEnd="@+id/btnSong"
+        android:layout_marginStart="0dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginEnd="0dp"
+        android:layout_toEndOf="@+id/imageView"
+        android:paddingStart="5dp"
+        android:textAllCaps="false"
+        android:textColor="@color/icons_text"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/tvSongAddList"
+        app:layout_constraintStart_toEndOf="@+id/imageAddList"
+        app:layout_constraintTop_toBottomOf="@+id/tvSongAddList" />
+
+    <Button
+        android:id="@+id/btnSong"
+        style="@style/Widget.MaterialComponents.MaterialCalendar.HeaderConfirmButton"
+        android:layout_width="wrap_content"
         android:layout_height="60dp"
+        android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
-        android:layout_marginTop="4dp"
-        android:src="@drawable/ic_ajustes"
+        android:layout_marginStart="0dp"
+        android:layout_marginTop="0dp"
+        android:layout_marginEnd="0dp"
+        android:layout_toStartOf="@+id/ajustesC"
+        android:background="@null"
+        android:insetTop="0dp"
+        android:insetBottom="0dp" />
+
+    <ImageButton
+        android:id="@+id/ajustesC"
+        android:layout_width="30sp"
+        android:layout_height="63dp"
+        android:layout_alignParentTop="true"
         android:layout_alignParentEnd="true"
-        android:padding="10pt"/>
+        android:background="@color/colorPrimaryDark"
+        android:src="@drawable/ic_ajustes"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/tvSongAddList"
+        app:layout_constraintTop_toTopOf="parent" />
 
 </RelativeLayout>
