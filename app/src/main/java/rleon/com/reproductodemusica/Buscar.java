@@ -3,18 +3,23 @@ package rleon.com.reproductodemusica;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.SearchView;
+
+import static rleon.com.reproductodemusica.MainActivity.archivosMS;
 
 /**
  * A simple {@link Fragment} subclass.
  * Use the {@link Buscar#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class Buscar extends Fragment {
+public class Buscar extends Fragment implements SearchView.OnQueryTextListener {
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -25,6 +30,10 @@ public class Buscar extends Fragment {
     private String mParam1;
     private String mParam2;
 
+    RecyclerView recyclerView;
+    //AdapterB adaptadorB;
+    AdaptadorM adaptadorM;
+    SearchView searchView;
     public Buscar() {
         // Required empty public constructor
     }
@@ -61,6 +70,25 @@ public class Buscar extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_buscar, container, false);
+        recyclerView = view.findViewById(R.id.recycleview);
+        recyclerView.setHasFixedSize(true);
+        if (!(archivosMS.size()<0)) {
+            adaptadorM = new AdaptadorM(getContext(), archivosMS);
+            recyclerView.setAdapter(adaptadorM);
+            recyclerView.setLayoutManager(new LinearLayoutManager(getContext(), RecyclerView.VERTICAL,
+                    false));
+        }
         return view;
+    }
+
+    @Override
+    public boolean onQueryTextSubmit(String s) {
+        return false;
+    }
+
+    @Override
+    public boolean onQueryTextChange(String s) {
+        adaptadorM.filtrar(s);
+        return false;
     }
 }

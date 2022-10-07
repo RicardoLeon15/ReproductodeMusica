@@ -16,27 +16,21 @@
         android:gravity="center"
         android:background="@drawable/gradient"/>
 
-    <ImageView
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recycleview"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/searchC"
+        android:layout_marginTop="10dp" />
+
+    <SearchView
+        android:id="@+id/searchC"
         android:layout_width="50dp"
         android:layout_height="50dp"
         android:layout_below="@+id/tituloB"
-        android:layout_alignParentEnd="true"
         android:layout_marginTop="10dp"
-        android:layout_marginEnd="3dp"
         android:padding="10pt"
-        android:src="@drawable/ic_round_search_24" />
-
-    <EditText
-        android:id="@+id/editTextTextPersonName"
-        android:layout_width="338dp"
-        android:layout_height="50dp"
-        android:layout_below="@+id/tituloB"
-        android:layout_alignParentStart="true"
-        android:layout_marginStart="10dp"
-        android:layout_marginTop="10dp"
-        android:ems="10"
-        android:inputType="textPersonName"
-        android:textColor="@color/icons_text"
-        android:text="Cancion" />
+        android:src="@drawable/ic_round_search_24"/>
 
 </RelativeLayout>

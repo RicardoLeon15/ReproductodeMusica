@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.media.MediaMetadataRetriever;
 
 import android.net.Uri;
+import android.os.Build;
 import android.provider.MediaStore;
 
 import android.util.Log;
@@ -32,15 +33,24 @@ import com.google.android.material.snackbar.Snackbar;
 
 import java.io.File;
 import java.util.ArrayList;
+import java.util.List;
+import java.util.stream.Collectors;
 
 public class AdaptadorM extends RecyclerView.Adapter<AdaptadorM.MHolder> {
 
     private Context mcontext;
     private ArrayList<ArchivosM> mFiles;
+    private ArrayList<ArchivosM> buscarCancion;
 
     AdaptadorM(Context mcontext, ArrayList<ArchivosM> mFiles){
         this.mFiles = mFiles;
         this.mcontext = mcontext;
+        buscarCancion = new ArrayList<>();
+        buscarCancion.addAll(mFiles);
+    }
+
+    public AdaptadorM() {
+
     }
 
     @NonNull
@@ -84,6 +94,29 @@ public class AdaptadorM extends RecyclerView.Adapter<AdaptadorM.MHolder> {
                 });
             }
         });
+    }
+
+    public void filtrar (String buscarC1){
+        int tam = buscarC1.length();
+        if (tam == 0){
+
+            mFiles.addAll(buscarCancion);
+        }else {
+            if (Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.N){
+                List<ArchivosM> collecion = mFiles.stream()
+                        .filter(i->i.getCancion().toLowerCase().contains(buscarC1.toLowerCase()))
+                        .collect(Collectors.toList());
+                mFiles.clear();
+                mFiles.addAll(collecion);
+            }else {
+                for (ArchivosM m : buscarCancion){
+                    if (m.getCancion().toLowerCase().contains(buscarC1.toLowerCase())){
+                        mFiles.add(m);
+                    }
+                }
+            }
+        }
+        notifyDataSetChanged();
     }
 
     private void deleteCancion(int position, View view) {
