@@ -2,6 +2,7 @@ package rleon.com.reproductodemusica;
 
 import android.content.Context;
 import android.content.Intent;
+import android.media.MediaMetadataRetriever;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -32,13 +33,13 @@ public class ArtistaCAdapter extends RecyclerView.Adapter<ArtistaCAdapter.MyHold
     @Override
     public void onBindViewHolder(@NonNull ArtistaCAdapter.MyHolder holder, final int position) {
         holder.nomAr.setText(artistFiles.get(position).getCancion());
-        Glide.with(mcontext).load(R.drawable.ic_cancion).into(holder.imgAr); //debes comentar esto antes de descomentar lo de abajo
-        /*byte[] image = getAlbumsArt(albumFiles.get(position).getPath());
+        //Glide.with(mcontext).load(R.drawable.ic_cancion).into(holder.imgAr); //debes comentar esto antes de descomentar lo de abajo
+        byte[] image = getAlbumsArt(artistFiles.get(position).getPath());
         if (image != null){
-            Glide.with(mcontext).asBitmap().load(image).into(holder.imgAl);
+            Glide.with(mcontext).asBitmap().load(image).into(holder.imgAr);
         }else{
-            Glide.with(mcontext).load(R.drawable.ic_cancion).into(holder.imgAl);
-        }*/
+            Glide.with(mcontext).load(R.drawable.ic_cancion).into(holder.imgAr);
+        }
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -63,5 +64,13 @@ public class ArtistaCAdapter extends RecyclerView.Adapter<ArtistaCAdapter.MyHold
             imgAr = itemView.findViewById(R.id.imageView);
             nomAr = itemView.findViewById(R.id.textView4);
         }
+    }
+
+    private byte[] getAlbumsArt(String uri){
+        MediaMetadataRetriever retriever = new MediaMetadataRetriever();
+        retriever.setDataSource(uri);
+        byte[] art = retriever.getEmbeddedPicture();
+        retriever.release();
+        return art;
     }
 }
