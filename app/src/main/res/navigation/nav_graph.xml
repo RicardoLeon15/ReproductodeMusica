@@ -64,5 +64,9 @@
         android:id="@+id/listAddSong"
         android:name="rleon.com.reproductodemusica.ListAddSong"
         android:label="fragment_list_add_song"
-        tools:layout="@layout/fragment_list_add_song" />
+        tools:layout="@layout/fragment_list_add_song" >
+        <action
+            android:id="@+id/action_listAddSong_to_Listas"
+            app:destination="@id/Listas" />
+    </fragment>
 </navigation>

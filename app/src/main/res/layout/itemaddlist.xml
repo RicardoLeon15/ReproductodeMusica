@@ -3,8 +3,10 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@color/colorPrimaryDark">
+    android:layout_height="wrap_content"
+    android:background="@color/colorPrimaryDark"
+    android:paddingHorizontal="6dp"
+    android:paddingVertical="4dp">
 
     <ImageView
         android:id="@+id/imageAddList"
@@ -12,13 +14,16 @@
         android:layout_height="60dp"
         app:layout_constraintEnd_toStartOf="@+id/tvSongAddList"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/ic_round_music_note_24" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/tvSongAddList"
-        android:layout_width="257dp"
-        android:layout_height="60dp"
+        android:layout_width="0dp"
+        android:layout_height="35dp"
+        android:paddingStart="5dp"
+        android:textAllCaps="false"
+        android:textColor="@color/icons_text"
+        android:textSize="20sp"
         app:layout_constraintEnd_toStartOf="@+id/btnOptAddList"
         app:layout_constraintStart_toEndOf="@+id/imageAddList"
         app:layout_constraintTop_toTopOf="parent" />
@@ -32,4 +37,16 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/tvSongAddList"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/tvADAddList"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:paddingStart="5dp"
+        android:textAllCaps="false"
+        android:textColor="@color/icons_text"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/tvSongAddList"
+        app:layout_constraintStart_toEndOf="@+id/imageAddList"
+        app:layout_constraintTop_toBottomOf="@+id/tvSongAddList" />
 </androidx.constraintlayout.widget.ConstraintLayout>

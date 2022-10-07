@@ -1,12 +1,29 @@
 package rleon.com.reproductodemusica;
 
+import android.app.AlertDialog;
+import android.content.Context;
+import android.content.DialogInterface;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
+import androidx.navigation.Navigation;
+import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
+import android.text.InputType;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
+
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
+
+import java.util.ArrayList;
+
+import static rleon.com.reproductodemusica.MainActivity.albums;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -23,6 +40,11 @@ public class Listas extends Fragment {
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
+
+    private SharedPreferences spPlaylists;
+    private ArrayList<String> arrayPlaylists = new ArrayList<String>();
+    private RecyclerView recyclerView;
+    private AdapterLists adapterLists;
 
     public Listas() {
         // Required empty public constructor
@@ -58,7 +80,52 @@ public class Listas extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_listas, container, false);
+        spPlaylists = getContext().getSharedPreferences("Playlists", Context.MODE_PRIVATE);
+        String lists = spPlaylists.getString("lists","");
+        if (!lists.equals("")){
+            TypeToken<ArrayList<String>> token = new TypeToken<ArrayList<String>>(){};
+            Gson gson = new Gson();
+            arrayPlaylists = gson.fromJson(lists,token.getType());
+        }
+        final View view = inflater.inflate(R.layout.fragment_listas,container,false);
+        recyclerView = view.findViewById(R.id.rvListas);
+        recyclerView.setHasFixedSize(true);
+        if (!(arrayPlaylists.size()<1)){
+            adapterLists = new AdapterLists(getContext(), arrayPlaylists);
+            recyclerView.setAdapter(adapterLists);
+            recyclerView.setLayoutManager(new GridLayoutManager(getContext(), 2));
+        }
+        view.findViewById(R.id.btnAddList).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+                builder.setTitle("Crear Lista de reproducción");
+                final EditText listNom = new EditText(getContext());
+                listNom.setInputType(InputType.TYPE_CLASS_TEXT);
+                listNom.setHint("Nueva Lista");
+                builder.setView(listNom);
+                builder.setPositiveButton("Guardar", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        arrayPlaylists.add(listNom.getText().toString());
+                        Gson gson = new Gson();
+                        String json = gson.toJson(arrayPlaylists);
+                        SharedPreferences.Editor editor = spPlaylists.edit();
+                        editor.putString("lists",json);
+                        editor.apply();
+                        adapterLists = new AdapterLists(getContext(), arrayPlaylists);
+                        recyclerView.setAdapter(adapterLists);
+                        recyclerView.setLayoutManager(new GridLayoutManager(getContext(), 2));
+                    }
+                });
+                builder.setNegativeButton("Cancelar", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        // User cancelled the dialog
+                    }
+                });
+                AlertDialog dialog = builder.create();
+                dialog.show();
+            }
+        });
+        return view;
     }
 }

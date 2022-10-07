@@ -16,45 +16,43 @@ import com.bumptech.glide.Glide;
 
 import java.util.ArrayList;
 
-public class AdaptadorAl extends RecyclerView.Adapter<AdaptadorAl.MyHolder> {
+public class AdapterLists extends RecyclerView.Adapter<AdapterLists.MyHolder> {
     private Context mcontext;
-    private ArrayList<ArchivosM> albumFiles;
+    private ArrayList<String> playlists;
     View view;
-    public AdaptadorAl(Context mcontext, ArrayList<ArchivosM> albumFiles) {
+    public AdapterLists(Context mcontext, ArrayList<String> playlists) {
         this.mcontext = mcontext;
-        this.albumFiles = albumFiles;
+        this.playlists = playlists;
     }
 
     @NonNull
     @Override
-    public MyHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public AdapterLists.MyHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         view = LayoutInflater.from(mcontext).inflate(R.layout.albumes, parent, false);
-        return new MyHolder(view);
+        return new AdapterLists.MyHolder(view);
     }
 
     @Override
     public void onBindViewHolder(@NonNull MyHolder holder, int position) {
-        holder.nomAl.setText(albumFiles.get(position).getAlbum());
-        //Glide.with(mcontext).load(R.drawable.ic_cancion).into(holder.imgAl);//debes comentar esto antes de descomentar lo de abajo
-        byte[] image = getAlbumsArt(albumFiles.get(position).getPath());
+        holder.nomAl.setText(playlists.get(position));
+        Glide.with(mcontext).load(R.drawable.ic_round_music_note_24).into(holder.imgAl);
+        /*byte[] image = getAlbumsArt(albumFiles.get(position).getPath());
         if (image != null){
             Glide.with(mcontext).asBitmap().load(image).into(holder.imgAl);
         }else{
             Glide.with(mcontext).load(R.drawable.ic_round_music_note_24).into(holder.imgAl);
-        }
+        }*/
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(mcontext, AlbumC.class);
-                intent.putExtra("nombreA", albumFiles.get(position).getAlbum());
-                mcontext.startActivity(intent);
+
             }
         });
     }
 
     @Override
     public int getItemCount() {
-        return albumFiles.size();
+        return playlists.size();
     }
 
     public class MyHolder extends RecyclerView.ViewHolder{
@@ -75,3 +73,4 @@ public class AdaptadorAl extends RecyclerView.Adapter<AdaptadorAl.MyHolder> {
         return art;
     }
 }
+
