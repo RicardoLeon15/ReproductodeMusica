@@ -42,6 +42,7 @@ public class AdaptadorAl extends RecyclerView.Adapter<AdaptadorAl.MyHolder> {
         }else{
             Glide.with(mcontext).load(R.drawable.ic_round_music_note_24).into(holder.imgAl);
         }
+
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
